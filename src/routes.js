@@ -1,4 +1,5 @@
 import { CarrinhoProvider } from 'common/contexts/Carrinho'
+import { PagamentoProvider } from 'common/contexts/Pagamento'
 import { UsuarioProvider } from 'common/contexts/Usuario'
 import Carrinho from 'pages/Carrinho'
 import Feira from 'pages/Feira'
@@ -11,24 +12,26 @@ export default function MyRoutes() {
         <BrowserRouter>
 
             <Switch>
+            <UsuarioProvider>
+            <PagamentoProvider>
+
             <CarrinhoProvider>
 
-                <UsuarioProvider>
-                    <Route exact path="/">
-                        <Login />
-                    </Route>
+                        <Route exact path="/">
+                            <Login />
+                        </Route>
                         <Route exact path="/feira">
                             <Feira />
                         </Route>
+                        <Route exact path="/carrinho">
+                            <Carrinho />
+                        </Route>
+
+                    </CarrinhoProvider>
+                    </PagamentoProvider>
+
                 </UsuarioProvider>
-
-                <Route exact path="/carrinho">
-                    <Carrinho />
-                </Route>
-                </CarrinhoProvider>
-
-        
-        </Switch>
+            </Switch>
         </BrowserRouter >
     )
 }
